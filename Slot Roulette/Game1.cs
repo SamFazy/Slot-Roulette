@@ -99,7 +99,7 @@ namespace Slot_Roulette
                 {
 
                     //Slot 1
-                    randomSpin = generator.Next(1, 4);
+                    randomSpin = generator.Next(1, 21);
                     slot1Colour = randomSpin;
 
                     //Slot 2
@@ -128,17 +128,92 @@ namespace Slot_Roulette
 
             
             //Slot 1
+
+            //Slot 1 Red
             if (slot1Colour == 1)
             {
                 _spriteBatch.Draw(slot1Texture, slot1Rect, Color.Red);
             }
             if (slot1Colour == 2)
             {
-                _spriteBatch.Draw(slot1Texture, slot1Rect, Color.Green);
+                _spriteBatch.Draw(slot1Texture, slot1Rect, Color.Red);
             }
             if (slot1Colour == 3)
             {
+                _spriteBatch.Draw(slot1Texture, slot1Rect, Color.Red);
+            }
+            if (slot1Colour == 4)
+            {
+                _spriteBatch.Draw(slot1Texture, slot1Rect, Color.Red);
+            }
+            if (slot1Colour == 5)
+            {
+                _spriteBatch.Draw(slot1Texture, slot1Rect, Color.Red);
+            }
+            if (slot1Colour == 6)
+            {
+                _spriteBatch.Draw(slot1Texture, slot1Rect, Color.Red);
+            }
+            if (slot1Colour == 7)
+            {
+                _spriteBatch.Draw(slot1Texture, slot1Rect, Color.Red);
+            }
+            if (slot1Colour == 8)
+            {
+                _spriteBatch.Draw(slot1Texture, slot1Rect, Color.Red);
+            }
+            if (slot1Colour == 9)
+            {
+                _spriteBatch.Draw(slot1Texture, slot1Rect, Color.Red);
+            }
+            
+
+            //Slot 1 Black
+            if (slot1Colour == 10)
+            {
                 _spriteBatch.Draw(slot1Texture, slot1Rect, Color.Black);
+            }
+            if (slot1Colour == 11)
+            {
+                _spriteBatch.Draw(slot1Texture, slot1Rect, Color.Black);
+            }
+            if (slot1Colour == 12)
+            {
+                _spriteBatch.Draw(slot1Texture, slot1Rect, Color.Black);
+            }
+            if (slot1Colour == 13)
+            {
+                _spriteBatch.Draw(slot1Texture, slot1Rect, Color.Black);
+            }
+            if (slot1Colour == 14)
+            {
+                _spriteBatch.Draw(slot1Texture, slot1Rect, Color.Black);
+            }
+            if (slot1Colour == 15)
+            {
+                _spriteBatch.Draw(slot1Texture, slot1Rect, Color.Black);
+            }
+            if (slot1Colour == 16)
+            {
+                _spriteBatch.Draw(slot1Texture, slot1Rect, Color.Black);
+            }
+            if (slot1Colour == 17)
+            {
+                _spriteBatch.Draw(slot1Texture, slot1Rect, Color.Black);
+            }
+            if (slot1Colour == 18)
+            {
+                _spriteBatch.Draw(slot1Texture, slot1Rect, Color.Black);
+            }
+
+            //Slot 1 Green
+            if (slot1Colour == 19)
+            {
+                _spriteBatch.Draw(slot1Texture, slot1Rect, Color.Green);
+            }
+            if (slot1Colour == 20)
+            {
+                _spriteBatch.Draw(slot1Texture, slot1Rect, Color.Green);
             }
 
             //Slot 2
