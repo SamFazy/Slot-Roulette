@@ -45,6 +45,10 @@ namespace Slot_Roulette
         Texture2D slot3AnimationTexture;
         Rectangle slot3AnimationRect;
 
+        //Background
+        Texture2D backgroundTexture;
+        Rectangle backgroundRect;
+
 
         int randomSpin;
 
@@ -81,8 +85,11 @@ namespace Slot_Roulette
             slot3Rect = new Rectangle(1285, 380, 350, 350);
             slot3AnimationRect = new Rectangle(1285, 380, 350, 350);
 
+            //Background
+            backgroundRect = new Rectangle(0, 0, 1920, 1080);
+
             //Spin
-            spinRect = new Rectangle(610, 800, 700, 200);
+            spinRect = new Rectangle(610, 800, 700, 150);
 
             //Timer
             timer = 8;
@@ -109,8 +116,11 @@ namespace Slot_Roulette
             slot3Texture = Content.Load<Texture2D>("PLayer");
             slot3AnimationTexture = Content.Load<Texture2D>("PLayer");
 
+            //Background
+            backgroundTexture = Content.Load<Texture2D>("glow_background");
+
             //Spin
-            spinTexture = Content.Load<Texture2D>("PLayer");
+            spinTexture = Content.Load<Texture2D>("Spin");
         }
 
         protected override void Update(GameTime gameTime)
@@ -199,6 +209,8 @@ namespace Slot_Roulette
             // TODO: Add your drawing code here
 
             _spriteBatch.Begin();
+
+            _spriteBatch.Draw(backgroundTexture, backgroundRect, Color.White);
 
             if (gameState == BLACK)
             {
@@ -486,7 +498,7 @@ namespace Slot_Roulette
                 _spriteBatch.Draw(slot3Texture, slot3Rect, Color.Green);
             }
 
-            _spriteBatch.Draw(spinTexture, spinRect, Color.Yellow);
+            _spriteBatch.Draw(spinTexture, spinRect, Color.White);
 
             
 
