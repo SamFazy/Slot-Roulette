@@ -11,7 +11,11 @@ namespace Slot_Roulette
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        int timer;
+        const int BLACK = 1, RED = 2, GREEN = 3;
+        int gameState;
 
+        int timerSpin;
 
         MouseState previousMouseState;
         MouseState mouseState;
@@ -21,14 +25,26 @@ namespace Slot_Roulette
         Texture2D slot1Texture;
         Rectangle slot1Rect;
         int slot1Colour;
+        //Slot 1 Animation
+        Texture2D slot1AnimationTexture;
+        Rectangle slot1AnimationRect;
+
         //Slot 2
         Texture2D slot2Texture;
         Rectangle slot2Rect;
         int slot2Colour;
+        //Slot 2 Animation
+        Texture2D slot2AnimationTexture;
+        Rectangle slot2AnimationRect;
+
         //Slot 3
         Texture2D slot3Texture;
         Rectangle slot3Rect;
         int slot3Colour;
+        //Slot 3 Animation
+        Texture2D slot3AnimationTexture;
+        Rectangle slot3AnimationRect;
+
 
         int randomSpin;
 
@@ -55,13 +71,24 @@ namespace Slot_Roulette
 
             //Slot 1
             slot1Rect = new Rectangle(285, 380, 350, 350);
+            slot1AnimationRect = new Rectangle(285, 380, 350, 350);
+
             //Slot 2
             slot2Rect = new Rectangle(785, 380, 350, 350);
+            slot2AnimationRect = new Rectangle(785, 380, 350, 350);
+
             //Slot 3
             slot3Rect = new Rectangle(1285, 380, 350, 350);
+            slot3AnimationRect = new Rectangle(1285, 380, 350, 350);
 
             //Spin
             spinRect = new Rectangle(610, 800, 700, 200);
+
+            //Timer
+            timer = 8;
+            gameState = BLACK;
+
+            timerSpin = 10000;
 
             base.Initialize();
         }
@@ -74,10 +101,13 @@ namespace Slot_Roulette
 
             //Slot 1
             slot1Texture = Content.Load<Texture2D>("PLayer");
+            slot1AnimationTexture = Content.Load<Texture2D>("PLayer");
             //Slot 2
             slot2Texture = Content.Load<Texture2D>("PLayer");
+            slot2AnimationTexture = Content.Load<Texture2D>("PLayer");
             //Slot 3
             slot3Texture = Content.Load<Texture2D>("PLayer");
+            slot3AnimationTexture = Content.Load<Texture2D>("PLayer");
 
             //Spin
             spinTexture = Content.Load<Texture2D>("PLayer");
@@ -90,6 +120,28 @@ namespace Slot_Roulette
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
+            timerSpin++;
+            timer--;
+            if(timer == 0)
+            {
+                timer = 8;
+
+                if (gameState == BLACK)
+                {
+                    gameState = RED;
+                }
+                else if (gameState == RED)
+                {
+                    gameState = GREEN;
+                }
+                else if (gameState == GREEN)
+                {
+                    gameState = BLACK;
+                }
+            }
+
+            
 
             // TODO: Add your update logic here
 
@@ -109,7 +161,29 @@ namespace Slot_Roulette
                     //Slot 3
                     randomSpin = generator.Next(1, 21);
                     slot3Colour = randomSpin;
+                    
+                    timerSpin = 0;
+
+                    slot1Rect = new Rectangle(2850, 3800, 3500, 3500);
+                    slot2Rect = new Rectangle(2850, 3800, 3500, 3500);
+                    slot3Rect = new Rectangle(2850, 3800, 3500, 3500);
+
                 }
+
+                
+            }
+
+            if (timerSpin == 20)
+            {
+                slot1Rect = new Rectangle(285, 380, 350, 350);
+            }
+            if (timerSpin == 120)
+            {
+                slot2Rect = new Rectangle(785, 380, 350, 350);
+            }
+            if (timerSpin == 220)
+            {
+                slot3Rect = new Rectangle(1285, 380, 350, 350);
             }
 
             base.Update(gameTime);
@@ -126,7 +200,27 @@ namespace Slot_Roulette
 
             _spriteBatch.Begin();
 
-            
+            if (gameState == BLACK)
+            {
+                _spriteBatch.Draw(slot1AnimationTexture, slot1AnimationRect, Color.Black);
+                _spriteBatch.Draw(slot2AnimationTexture, slot2AnimationRect, Color.Black);
+                _spriteBatch.Draw(slot3AnimationTexture, slot3AnimationRect, Color.Black);
+            }
+
+            if (gameState == RED)
+            {
+                _spriteBatch.Draw(slot1AnimationTexture, slot1AnimationRect, Color.Red);
+                _spriteBatch.Draw(slot2AnimationTexture, slot2AnimationRect, Color.Red);
+                _spriteBatch.Draw(slot3AnimationTexture, slot3AnimationRect, Color.Red);
+            }
+
+            if (gameState == GREEN)
+            {
+                _spriteBatch.Draw(slot1AnimationTexture, slot1AnimationRect, Color.Green);
+                _spriteBatch.Draw(slot2AnimationTexture, slot2AnimationRect, Color.Green);
+                _spriteBatch.Draw(slot3AnimationTexture, slot3AnimationRect, Color.Green);
+            }
+
             //Slot 1
 
             //Slot 1 Red
@@ -393,6 +487,8 @@ namespace Slot_Roulette
             }
 
             _spriteBatch.Draw(spinTexture, spinRect, Color.Yellow);
+
+            
 
             _spriteBatch.End();
 
