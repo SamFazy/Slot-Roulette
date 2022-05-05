@@ -28,6 +28,9 @@ namespace Slot_Roulette
         //Slot 1 Animation
         Texture2D slot1AnimationTexture;
         Rectangle slot1AnimationRect;
+        //Slot 1 Border
+        Texture2D slot1BorderTexture;
+        Rectangle slot1BorderRect;
 
         //Slot 2
         Texture2D slot2Texture;
@@ -36,6 +39,9 @@ namespace Slot_Roulette
         //Slot 2 Animation
         Texture2D slot2AnimationTexture;
         Rectangle slot2AnimationRect;
+        //Slot 2 Border
+        Texture2D slot2BorderTexture;
+        Rectangle slot2BorderRect;
 
         //Slot 3
         Texture2D slot3Texture;
@@ -44,6 +50,9 @@ namespace Slot_Roulette
         //Slot 3 Animation
         Texture2D slot3AnimationTexture;
         Rectangle slot3AnimationRect;
+        //Slot 3 Border
+        Texture2D slot3BorderTexture;
+        Rectangle slot3BorderRect;
 
         //Background
         Texture2D backgroundTexture;
@@ -76,14 +85,20 @@ namespace Slot_Roulette
             //Slot 1
             slot1Rect = new Rectangle(285, 380, 350, 350);
             slot1AnimationRect = new Rectangle(285, 380, 350, 350);
+            //Border
+            slot1BorderRect = new Rectangle(280, 375, 360, 360);
 
             //Slot 2
             slot2Rect = new Rectangle(785, 380, 350, 350);
             slot2AnimationRect = new Rectangle(785, 380, 350, 350);
+            //Border
+            slot2BorderRect = new Rectangle(780, 375, 360, 360);
 
             //Slot 3
             slot3Rect = new Rectangle(1285, 380, 350, 350);
             slot3AnimationRect = new Rectangle(1285, 380, 350, 350);
+            //Border
+            slot3BorderRect = new Rectangle(1280, 375, 360, 360);
 
             //Background
             backgroundRect = new Rectangle(0, 0, 1920, 1080);
@@ -109,12 +124,20 @@ namespace Slot_Roulette
             //Slot 1
             slot1Texture = Content.Load<Texture2D>("PLayer");
             slot1AnimationTexture = Content.Load<Texture2D>("PLayer");
+            //Border
+            slot1BorderTexture = Content.Load<Texture2D>("Border");
+
             //Slot 2
             slot2Texture = Content.Load<Texture2D>("PLayer");
             slot2AnimationTexture = Content.Load<Texture2D>("PLayer");
+            //Border
+            slot2BorderTexture = Content.Load<Texture2D>("Border");
+
             //Slot 3
             slot3Texture = Content.Load<Texture2D>("PLayer");
             slot3AnimationTexture = Content.Load<Texture2D>("PLayer");
+            //Border
+            slot3BorderTexture = Content.Load<Texture2D>("Border");
 
             //Background
             backgroundTexture = Content.Load<Texture2D>("glow_background");
@@ -212,6 +235,11 @@ namespace Slot_Roulette
 
             _spriteBatch.Draw(backgroundTexture, backgroundRect, Color.White);
 
+            //Slot Borders
+            _spriteBatch.Draw(slot1BorderTexture, slot1BorderRect, Color.White);
+            _spriteBatch.Draw(slot2BorderTexture, slot2BorderRect, Color.White);
+            _spriteBatch.Draw(slot3BorderTexture, slot3BorderRect, Color.White);
+
             if (gameState == BLACK)
             {
                 _spriteBatch.Draw(slot1AnimationTexture, slot1AnimationRect, Color.Black);
@@ -228,9 +256,9 @@ namespace Slot_Roulette
 
             if (gameState == GREEN)
             {
-                _spriteBatch.Draw(slot1AnimationTexture, slot1AnimationRect, Color.Green);
-                _spriteBatch.Draw(slot2AnimationTexture, slot2AnimationRect, Color.Green);
-                _spriteBatch.Draw(slot3AnimationTexture, slot3AnimationRect, Color.Green);
+                _spriteBatch.Draw(slot1AnimationTexture, slot1AnimationRect, Color.ForestGreen);
+                _spriteBatch.Draw(slot2AnimationTexture, slot2AnimationRect, Color.ForestGreen);
+                _spriteBatch.Draw(slot3AnimationTexture, slot3AnimationRect, Color.ForestGreen);
             }
 
             //Slot 1
@@ -315,11 +343,11 @@ namespace Slot_Roulette
             //Slot 1 Green
             if (slot1Colour == 19)
             {
-                _spriteBatch.Draw(slot1Texture, slot1Rect, Color.Green);
+                _spriteBatch.Draw(slot1Texture, slot1Rect, Color.ForestGreen);
             }
             if (slot1Colour == 20)
             {
-                _spriteBatch.Draw(slot1Texture, slot1Rect, Color.Green);
+                _spriteBatch.Draw(slot1Texture, slot1Rect, Color.ForestGreen);
             }
 
             //Slot 2
@@ -403,11 +431,11 @@ namespace Slot_Roulette
             //Slot 2 Green
             if (slot2Colour == 19)
             {
-                _spriteBatch.Draw(slot2Texture, slot2Rect, Color.Green);
+                _spriteBatch.Draw(slot2Texture, slot2Rect, Color.ForestGreen);
             }
             if (slot2Colour == 20)
             {
-                _spriteBatch.Draw(slot2Texture, slot2Rect, Color.Green);
+                _spriteBatch.Draw(slot2Texture, slot2Rect, Color.ForestGreen);
             }
 
             //Slot 3
@@ -491,16 +519,18 @@ namespace Slot_Roulette
             //Slot 3 Green
             if (slot3Colour == 19)
             {
-                _spriteBatch.Draw(slot3Texture, slot3Rect, Color.Green);
+                _spriteBatch.Draw(slot3Texture, slot3Rect, Color.ForestGreen);
             }
             if (slot3Colour == 20)
             {
-                _spriteBatch.Draw(slot3Texture, slot3Rect, Color.Green);
+                _spriteBatch.Draw(slot3Texture, slot3Rect, Color.ForestGreen);
             }
 
             _spriteBatch.Draw(spinTexture, spinRect, Color.White);
 
             
+
+
 
             _spriteBatch.End();
 
