@@ -25,6 +25,9 @@ namespace Slot_Roulette
         Texture2D slot1Texture;
         Rectangle slot1Rect;
         int slot1Colour;
+        bool slot1Red;
+        bool slot1Black;
+        bool slot1Green;
         //Slot 1 Animation
         Texture2D slot1AnimationTexture;
         Rectangle slot1AnimationRect;
@@ -36,6 +39,9 @@ namespace Slot_Roulette
         Texture2D slot2Texture;
         Rectangle slot2Rect;
         int slot2Colour;
+        bool slot2Red;
+        bool slot2Black;
+        bool slot2Green;
         //Slot 2 Animation
         Texture2D slot2AnimationTexture;
         Rectangle slot2AnimationRect;
@@ -47,6 +53,9 @@ namespace Slot_Roulette
         Texture2D slot3Texture;
         Rectangle slot3Rect;
         int slot3Colour;
+        bool slot3Red;
+        bool slot3Black;
+        bool slot3Green;
         //Slot 3 Animation
         Texture2D slot3AnimationTexture;
         Rectangle slot3AnimationRect;
@@ -54,12 +63,18 @@ namespace Slot_Roulette
         Texture2D slot3BorderTexture;
         Rectangle slot3BorderRect;
 
+        //Winner
+        Texture2D winnerTexture;
+        Rectangle winnerRect;
+
         //Background
         Texture2D backgroundTexture;
         Rectangle backgroundRect;
 
 
         int randomSpin;
+
+        bool win;
 
         //Spin
         Texture2D spinTexture;
@@ -106,6 +121,9 @@ namespace Slot_Roulette
             //Spin
             spinRect = new Rectangle(610, 800, 700, 150);
 
+            //Winner
+            winnerRect = new Rectangle(200, 200, 200, 200);
+
             //Timer
             timer = 8;
             gameState = BLACK;
@@ -141,6 +159,9 @@ namespace Slot_Roulette
 
             //Background
             backgroundTexture = Content.Load<Texture2D>("glow_background");
+
+            //Winner
+            winnerTexture = Content.Load<Texture2D>("Winner");
 
             //Spin
             spinTexture = Content.Load<Texture2D>("Spin");
@@ -187,14 +208,57 @@ namespace Slot_Roulette
                     randomSpin = generator.Next(1, 21);
                     slot1Colour = randomSpin;
 
+                    if (randomSpin == 1 || randomSpin == 2 || randomSpin == 3 || randomSpin == 4 || randomSpin == 5 || randomSpin == 6 || randomSpin == 7 || randomSpin == 8 || randomSpin == 9)
+                    {
+                        slot1Red = true;
+                    }
+
+                    if (randomSpin == 10 || randomSpin == 11 || randomSpin == 12 || randomSpin == 13 || randomSpin == 14 || randomSpin == 15 || randomSpin == 16 || randomSpin == 17 || randomSpin == 18)
+                    {
+                        slot1Black = true;
+                    }
+                    if (randomSpin == 19 || randomSpin == 20)
+                    {
+                        slot1Green = true;
+                    }
+
+
                     //Slot 2
                     randomSpin = generator.Next(1, 21);
                     slot2Colour = randomSpin;
 
+                    if (randomSpin == 1 || randomSpin == 2 || randomSpin == 3 || randomSpin == 4 || randomSpin == 5 || randomSpin == 6 || randomSpin == 7 || randomSpin == 8 || randomSpin == 9)
+                    {
+                        slot2Red = true;
+                    }
+                    if (randomSpin == 10 || randomSpin == 11 || randomSpin == 12 || randomSpin == 13 || randomSpin == 14 || randomSpin == 15 || randomSpin == 16 || randomSpin == 17 || randomSpin == 18)
+                    {
+                        slot2Black = true;
+                    }
+
+                    if (randomSpin == 19 || randomSpin == 20)
+                    {
+                        slot2Green = true;
+                    }
+
                     //Slot 3
                     randomSpin = generator.Next(1, 21);
                     slot3Colour = randomSpin;
-                    
+
+                    if (randomSpin == 1 || randomSpin == 2 || randomSpin == 3 || randomSpin == 4 || randomSpin == 5 || randomSpin == 6 || randomSpin == 7 || randomSpin == 8 || randomSpin == 9)
+                    {
+                        slot3Red = true;
+                    }
+                    if (randomSpin == 10 || randomSpin == 11 || randomSpin == 12 || randomSpin == 13 || randomSpin == 14 || randomSpin == 15 || randomSpin == 16 || randomSpin == 17 || randomSpin == 18)
+                    {
+                        slot3Black = true;
+                    }
+
+                    if (randomSpin == 19 || randomSpin == 20)
+                    {
+                        slot3Green = true;
+                    }
+
                     timerSpin = 0;
 
                     slot1Rect = new Rectangle(2850, 3800, 3500, 3500);
@@ -526,10 +590,17 @@ namespace Slot_Roulette
                 _spriteBatch.Draw(slot3Texture, slot3Rect, Color.ForestGreen);
             }
 
+            //Winner
+            if (slot1Black == true && slot2Black == true && slot3Black == true)
+            {
+                _spriteBatch.Draw(winnerTexture, winnerRect, Color.White);
+            }
+            else
+            {
+                _spriteBatch.Draw(winnerTexture, new Rectangle(2850, 3800, 3500, 3500), Color.White);
+            }
+
             _spriteBatch.Draw(spinTexture, spinRect, Color.White);
-
-            
-
 
 
             _spriteBatch.End();
