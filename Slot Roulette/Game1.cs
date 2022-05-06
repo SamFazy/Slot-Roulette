@@ -13,9 +13,11 @@ namespace Slot_Roulette
         private SpriteBatch _spriteBatch;
         int timer;
         const int BLACK = 1, RED = 2, GREEN = 3;
+        const int VISIBLE = 1, INVISIBLE = 2;
         int gameState;
 
         int timerSpin;
+        int winnerFlash;
 
         MouseState previousMouseState;
         MouseState mouseState;
@@ -122,13 +124,15 @@ namespace Slot_Roulette
             spinRect = new Rectangle(610, 800, 700, 150);
 
             //Winner
-            winnerRect = new Rectangle(200, 200, 200, 200);
+            winnerRect = new Rectangle(610, 80, 700, 300);
 
             //Timer
             timer = 8;
             gameState = BLACK;
 
             timerSpin = 10000;
+
+            winnerFlash = 8;
 
             base.Initialize();
         }
@@ -161,7 +165,7 @@ namespace Slot_Roulette
             backgroundTexture = Content.Load<Texture2D>("glow_background");
 
             //Winner
-            winnerTexture = Content.Load<Texture2D>("Winner");
+            winnerTexture = Content.Load<Texture2D>("Winner2");
 
             //Spin
             spinTexture = Content.Load<Texture2D>("Spin");
@@ -177,6 +181,8 @@ namespace Slot_Roulette
 
             timerSpin++;
             timer--;
+            winnerFlash--;
+
             if(timer == 0)
             {
                 timer = 8;
@@ -195,7 +201,22 @@ namespace Slot_Roulette
                 }
             }
 
-            
+            if (winnerFlash == 0)
+            {
+                winnerFlash = 8;
+
+                if (gameState == VISIBLE)
+                {
+                    gameState = INVISIBLE;
+                }
+                else if (gameState == INVISIBLE)
+                {
+                    gameState = VISIBLE;
+                }
+
+            }
+
+
 
             // TODO: Add your update logic here
 
@@ -203,6 +224,19 @@ namespace Slot_Roulette
             {
                 if (spinRect.Contains(mouseState.X, mouseState.Y))
                 {
+                    slot1Red = false;
+                    slot1Black = false;
+                    slot1Black = false;
+
+                    slot2Red = false;
+                    slot2Black = false;
+                    slot2Green = false;
+
+                    slot3Red = false;
+                    slot3Black = false;
+                    slot3Green = false;
+
+                    win = false;
 
                     //Slot 1
                     randomSpin = generator.Next(1, 21);
@@ -281,6 +315,37 @@ namespace Slot_Roulette
             if (timerSpin == 220)
             {
                 slot3Rect = new Rectangle(1285, 380, 350, 350);
+            }
+
+            
+            //Win and Loss Detection
+            if (slot1Black == true && slot2Black == true && slot3Red == true)
+            {
+                
+            }
+            else if (slot1Black == true && slot2Red == true && slot3Red == true)
+            {
+
+            }
+            else if (slot1Black == true && slot2Red == true && slot3Black == true)
+            {
+
+            }
+            else if (slot1Red == true && slot2Red == true && slot3Black == true)
+            {
+
+            }
+            else if (slot1Red == true && slot2Black == true && slot3Black == true)
+            {
+
+            }
+            else if (slot1Red == true && slot2Black == true && slot3Red == true)
+            {
+
+            }
+            else
+            {
+                win = true;
             }
 
             base.Update(gameTime);
@@ -591,14 +656,31 @@ namespace Slot_Roulette
             }
 
             //Winner
-            if (slot1Black == true && slot2Black == true && slot3Black == true)
+            if(win == true)
             {
-                _spriteBatch.Draw(winnerTexture, winnerRect, Color.White);
+
+                if(timerSpin > 219)
+                {
+
+                    if(gameState == VISIBLE)
+                    {
+                        _spriteBatch.Draw(winnerTexture, winnerRect, Color.White);
+                    }
+                    
+                    if(gameState == INVISIBLE)
+                    {
+                        _spriteBatch.Draw(winnerTexture, new Rectangle(2850, 3800, 3500, 3500), Color.White);
+                    }
+
+                }
+                
             }
             else
             {
                 _spriteBatch.Draw(winnerTexture, new Rectangle(2850, 3800, 3500, 3500), Color.White);
             }
+
+            
 
             _spriteBatch.Draw(spinTexture, spinRect, Color.White);
 
