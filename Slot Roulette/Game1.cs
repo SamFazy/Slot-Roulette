@@ -15,7 +15,7 @@ namespace Slot_Roulette
         const int BLACK = 1, RED = 2, GREEN = 3;
         const int VISIBLE = 1, INVISIBLE = 2;
         int gameState;
-
+        int gameState2;
         int timerSpin;
         int winnerFlash;
 
@@ -132,6 +132,7 @@ namespace Slot_Roulette
 
             timerSpin = 10000;
 
+            gameState2 = VISIBLE;
             winnerFlash = 8;
 
             base.Initialize();
@@ -203,15 +204,15 @@ namespace Slot_Roulette
 
             if (winnerFlash == 0)
             {
-                winnerFlash = 8;
+                winnerFlash = 15;
 
-                if (gameState == VISIBLE)
+                if (gameState2 == VISIBLE)
                 {
-                    gameState = INVISIBLE;
+                    gameState2 = INVISIBLE;
                 }
-                else if (gameState == INVISIBLE)
+                else if (gameState2 == INVISIBLE)
                 {
-                    gameState = VISIBLE;
+                    gameState2 = VISIBLE;
                 }
 
             }
@@ -299,6 +300,36 @@ namespace Slot_Roulette
                     slot2Rect = new Rectangle(2850, 3800, 3500, 3500);
                     slot3Rect = new Rectangle(2850, 3800, 3500, 3500);
 
+                    //Win and Loss Detection
+                    if (slot1Black == true && slot2Black == true && slot3Red == true)
+                    {
+
+                    }
+                    else if (slot1Black == true && slot2Red == true && slot3Red == true)
+                    {
+
+                    }
+                    else if (slot1Black == true && slot2Red == true && slot3Black == true)
+                    {
+
+                    }
+                    else if (slot1Red == true && slot2Red == true && slot3Black == true)
+                    {
+
+                    }
+                    else if (slot1Red == true && slot2Black == true && slot3Black == true)
+                    {
+
+                    }
+                    else if (slot1Red == true && slot2Black == true && slot3Red == true)
+                    {
+
+                    }
+                    else
+                    {
+                        win = true;
+                    }
+
                 }
 
                 
@@ -318,35 +349,7 @@ namespace Slot_Roulette
             }
 
             
-            //Win and Loss Detection
-            if (slot1Black == true && slot2Black == true && slot3Red == true)
-            {
-                
-            }
-            else if (slot1Black == true && slot2Red == true && slot3Red == true)
-            {
-
-            }
-            else if (slot1Black == true && slot2Red == true && slot3Black == true)
-            {
-
-            }
-            else if (slot1Red == true && slot2Red == true && slot3Black == true)
-            {
-
-            }
-            else if (slot1Red == true && slot2Black == true && slot3Black == true)
-            {
-
-            }
-            else if (slot1Red == true && slot2Black == true && slot3Red == true)
-            {
-
-            }
-            else
-            {
-                win = true;
-            }
+            
 
             base.Update(gameTime);
 
@@ -389,6 +392,29 @@ namespace Slot_Roulette
                 _spriteBatch.Draw(slot2AnimationTexture, slot2AnimationRect, Color.ForestGreen);
                 _spriteBatch.Draw(slot3AnimationTexture, slot3AnimationRect, Color.ForestGreen);
             }
+
+
+            //Winner
+            if (win == true)
+            {
+
+                if (timerSpin > 219)
+                {
+
+                    if (gameState2 == VISIBLE)
+                    {
+                        _spriteBatch.Draw(winnerTexture, winnerRect, Color.White);
+                    }
+
+                    if (gameState2 == INVISIBLE)
+                    {
+                        _spriteBatch.Draw(winnerTexture, new Rectangle(2850, 3800, 3500, 3500), Color.White);
+                    }
+
+                }
+
+            }
+          
 
             //Slot 1
 
@@ -655,32 +681,7 @@ namespace Slot_Roulette
                 _spriteBatch.Draw(slot3Texture, slot3Rect, Color.ForestGreen);
             }
 
-            //Winner
-            if(win == true)
-            {
 
-                if(timerSpin > 219)
-                {
-
-                    if(gameState == VISIBLE)
-                    {
-                        _spriteBatch.Draw(winnerTexture, winnerRect, Color.White);
-                    }
-                    
-                    if(gameState == INVISIBLE)
-                    {
-                        _spriteBatch.Draw(winnerTexture, new Rectangle(2850, 3800, 3500, 3500), Color.White);
-                    }
-
-                }
-                
-            }
-            else
-            {
-                _spriteBatch.Draw(winnerTexture, new Rectangle(2850, 3800, 3500, 3500), Color.White);
-            }
-
-            
 
             _spriteBatch.Draw(spinTexture, spinRect, Color.White);
 
