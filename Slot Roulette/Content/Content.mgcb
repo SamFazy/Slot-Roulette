@@ -61,6 +61,24 @@
 /processorParam:TextureFormat=Color
 /build:Player.jpg
 
+#begin Sound1.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound1.mp3
+
+#begin Sound2.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound2.mp3
+
+#begin Sound3.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound3.mp3
+
 #begin Spin.png
 /importer:TextureImporter
 /processor:TextureProcessor

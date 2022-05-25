@@ -73,6 +73,16 @@ namespace Slot_Roulette
         Texture2D backgroundTexture;
         Rectangle backgroundRect;
 
+        //Sounds
+        SoundEffect slot1Sound;
+        SoundEffectInstance slot1SoundInstance;
+
+        SoundEffect slot2Sound;
+        SoundEffectInstance slot2SoundInstance;
+
+        SoundEffect slot3Sound;
+        SoundEffectInstance slot3SoundInstance;
+
 
         int randomSpin;
 
@@ -170,6 +180,19 @@ namespace Slot_Roulette
 
             //Spin
             spinTexture = Content.Load<Texture2D>("Spin");
+
+            //Sound
+            slot1Sound = Content.Load<SoundEffect>("Sound1");
+            slot1SoundInstance = slot1Sound.CreateInstance();
+            slot1SoundInstance.Volume = 0.4f;
+
+            slot2Sound = Content.Load<SoundEffect>("Sound2");
+            slot2SoundInstance = slot2Sound.CreateInstance();
+            slot2SoundInstance.Volume = 0.4f;
+
+            slot3Sound = Content.Load<SoundEffect>("Sound3");
+            slot3SoundInstance = slot3Sound.CreateInstance();
+            slot3SoundInstance.Volume = 0.4f;
         }
 
         protected override void Update(GameTime gameTime)
@@ -338,14 +361,17 @@ namespace Slot_Roulette
             if (timerSpin == 20)
             {
                 slot1Rect = new Rectangle(285, 380, 350, 350);
+                slot1SoundInstance.Play();
             }
-            if (timerSpin == 120)
+            if (timerSpin == 90)
             {
                 slot2Rect = new Rectangle(785, 380, 350, 350);
+                slot2SoundInstance.Play();
             }
-            if (timerSpin == 220)
+            if (timerSpin == 150)
             {
                 slot3Rect = new Rectangle(1285, 380, 350, 350);
+                slot3SoundInstance.Play();
             }
 
             
@@ -398,7 +424,7 @@ namespace Slot_Roulette
             if (win == true)
             {
 
-                if (timerSpin > 219)
+                if (timerSpin > 150)
                 {
 
                     if (gameState2 == VISIBLE)
