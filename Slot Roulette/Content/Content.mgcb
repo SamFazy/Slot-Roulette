@@ -91,6 +91,13 @@
 /processorParam:TextureFormat=Color
 /build:Spin.png
 
+#begin WinAmount.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:WinAmount.spritefont
+
 #begin Winner.png
 /importer:TextureImporter
 /processor:TextureProcessor

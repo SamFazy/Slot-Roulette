@@ -73,6 +73,10 @@ namespace Slot_Roulette
         Texture2D backgroundTexture;
         Rectangle backgroundRect;
 
+        //Win Amount
+        SpriteFont winAmountFont;
+        string winAmount;
+
         //Sounds
         SoundEffect slot1Sound;
         SoundEffectInstance slot1SoundInstance;
@@ -180,6 +184,10 @@ namespace Slot_Roulette
 
             //Spin
             spinTexture = Content.Load<Texture2D>("Spin");
+
+            //Win Amount
+            winAmountFont = Content.Load<SpriteFont>("WinAmount");
+            winAmount = ("You Won: $0");
 
             //Sound
             slot1Sound = Content.Load<SoundEffect>("Sound1");
@@ -353,6 +361,10 @@ namespace Slot_Roulette
                         win = true;
                     }
 
+                    winAmount = ("You Won: $0");
+
+
+
                 }
 
                 
@@ -374,8 +386,151 @@ namespace Slot_Roulette
                 slot3SoundInstance.Play();
             }
 
-            
-            
+
+            //Amount Won
+
+            if (slot1Green == true && slot2Green == true && slot3Green == true)
+            {
+                if (timerSpin == 150)
+                    winAmount = ("You Won: $100");
+            }
+            else if (slot1Black == true && slot2Black == true && slot3Black == true)
+            {
+                if (timerSpin == 150)
+                    winAmount = ("You Won: $5");
+            }
+            else if (slot1Red == true && slot2Red == true && slot3Red == true)
+            {
+                if (timerSpin == 150)
+                    winAmount = ("You Won: $5");
+            }
+            else if (slot1Green == true && slot2Black == true && slot3Red == true)
+            {
+                if (timerSpin == 150)
+                    winAmount = ("You Won: $4");
+            }
+            else if (slot1Green == true && slot2Red == true && slot3Black == true)
+            {
+                if (timerSpin == 150)
+                    winAmount = ("You Won: $4");
+            }
+            else if (slot1Green == true && slot2Green == true && slot3Red == true)
+            {
+                if (timerSpin == 150)
+                    winAmount = ("You Won: $6");
+            }
+            else if (slot1Green == true && slot2Green == true && slot3Black == true)
+            {
+                if (timerSpin == 150)
+                    winAmount = ("You Won: $6");
+            }
+            else if (slot1Green == true && slot2Red == true && slot3Red == true)
+            {
+                if (timerSpin == 150)
+                    winAmount = ("You Won: $4");
+            }
+            else if (slot1Green == true && slot2Black == true && slot3Black == true)
+            {
+                if (timerSpin == 150)
+                    winAmount = ("You Won: $4");
+            }
+            else if (slot1Green == true && slot2Red == true && slot3Green == true)
+            {
+                if (timerSpin == 150)
+                    winAmount = ("You Won: $6");
+            }
+            else if (slot1Green == true && slot2Black == true && slot3Green == true)
+            {
+                if (timerSpin == 150)
+                    winAmount = ("You Won: $6");
+            }
+            else if (slot1Black == true && slot2Black == true && slot3Green == true)
+            {
+                if (timerSpin == 150)
+                    winAmount = ("You Won: $4");
+            }
+            else if (slot1Red == true && slot2Red == true && slot3Green == true)
+            {
+                if (timerSpin == 150)
+                    winAmount = ("You Won: $4");
+            }
+            else if (slot1Black == true && slot2Green == true && slot3Black == true)
+            {
+                if (timerSpin == 150)
+                    winAmount = ("You Won: $4");
+            }
+            else if (slot1Red == true && slot2Green == true && slot3Red == true)
+            {
+                if (timerSpin == 150)
+                    winAmount = ("You Won: $4");
+            }
+            else if (slot1Black == true && slot2Green == true && slot3Green == true)
+            {
+                if (timerSpin == 150)
+                    winAmount = ("You Won: $6");
+            }
+            else if (slot1Red == true && slot2Green == true && slot3Green == true)
+            {
+                if (timerSpin == 150)
+                    winAmount = ("You Won: $6");
+            }
+            else if (slot1Black == true && slot2Green == true && slot3Red == true)
+            {
+                if (timerSpin == 150)
+                    winAmount = ("You Won: $2");
+            }
+            else if (slot1Black == true && slot2Red == true && slot3Green == true)
+            {
+                if (timerSpin == 150)
+                    winAmount = ("You Won: $2");
+            }
+            else if (slot1Red == true && slot2Green == true && slot3Black == true)
+            {
+                if (timerSpin == 150)
+                    winAmount = ("You Won: $2");
+            }
+            else if (slot1Red == true && slot2Black == true && slot3Green == true)
+            {
+                if (timerSpin == 150)
+                    winAmount = ("You Won: $2");
+            }
+            else if (slot1Black == true && slot2Black == true && slot3Red == true)
+            {
+                if (timerSpin == 150)
+                    winAmount = ("You Won: $0");
+            }
+            else if (slot1Black == true && slot2Red == true && slot3Red == true)
+            {
+                if (timerSpin == 150)
+                    winAmount = ("You Won: $0");
+            }
+            else if (slot1Black == true && slot2Red == true && slot3Black == true)
+            {
+                if (timerSpin == 150)
+                    winAmount = ("You Won: $0");
+            }
+            else if (slot1Red == true && slot2Red == true && slot3Black == true)
+            {
+                if (timerSpin == 150)
+                    winAmount = ("You Won: $0");
+            }
+            else if (slot1Red == true && slot2Black == true && slot3Black == true)
+            {
+                if (timerSpin == 150)
+                    winAmount = ("You Won: $0");
+            }
+            else if (slot1Red == true && slot2Black == true && slot3Red == true)
+            {
+                if (timerSpin == 150)
+                    winAmount = ("You Won: $0");
+            }
+            else
+            {
+              
+                    winAmount = ("You Won: $0");
+            }
+
+
 
             base.Update(gameTime);
 
@@ -707,7 +862,7 @@ namespace Slot_Roulette
                 _spriteBatch.Draw(slot3Texture, slot3Rect, Color.ForestGreen);
             }
 
-
+            _spriteBatch.DrawString(winAmountFont, winAmount, new Vector2(1313, 300), Color.White);
 
             _spriteBatch.Draw(spinTexture, spinRect, Color.White);
 
